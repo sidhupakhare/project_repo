@@ -58,3 +58,6 @@ git merge origin/master - to get the changes from server.
 These two steps can be converted into one step by
 git pull branchName
 ex. git pull origin
+git push origin -d branchname to delete the branch from remote repository.
+git fetch --all - to get all the udated branches from repository.
+git fetch --all --prune - to get the deleted file info.
