@@ -39,8 +39,22 @@ git rebase -i parentBranchName - to change the commit messages, combine the comm
 git rebase -i HEAD~3 - to make all the available operations on last 3 commits.
 
 git tag tagName - till the last commit, the branch will have the special pointer that is tag. We can use the tagname to checkout the branch till that commit 
-git push 
+git push currentBranch targetBranch
+ex. git push origin master - to push the changes on the repository.
 git remote -v - to get the remote repositories associated with the current local repository.
 
+to generate SSH Key
+open the git bash.
+C:\Program Files\Git\bin\bash.exe
+run the command
+ssh-keygen -t rsa -C "your_email@example.com"
+to clone the repo
+git clone ssh-url - provide the ssh-url to clone the repo
+to fetch the remote changes
+git fetch targetBranchName
+ex. git fetch origin
+git merge origin/master - to get the changes from server.
 
-
+These two steps can be converted into one step by
+git pull branchName
+ex. git pull origin
