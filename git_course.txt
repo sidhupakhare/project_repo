@@ -1,0 +1,46 @@
+git init projectName - To create the repository
+git add - to stage the file or changes
+git status - to check the current status of the repo
+git log - to see the history of the repo
+git log --oneline
+git log --since="2/anyNumber weeks/days/month ago"
+git log --after "yyyy-mm-dd"
+git log --before "yyyy-mm-dd"
+git log --until "yyyy-mm-dd"
+git log -NumberOfLogs - to show number of logs, can be used with any other option given above
+
+git commit -m "Commit Message" - to commit the changes
+git mv currentFileOrDirectoryName newFileOrDirName - to rename a file or directory
+git rm currentFileOrDirectoryName - to remove a file or a directory
+
+git diff --staged - to see the changes of the staged file
+git diff commitId - To see the differences till the given commit id
+git diff commitId1..commitId2 - to see the differences between two commit id
+git diff commitId^ - added ^ symbol, to see the changes including that commit
+git diff HEAD^ - to see the changes in the current and previous commit changes.
+
+git commit --amend - to change the last commit message, new file, updated existing file, it will open vi editor, to change the editor use below command
+git config --global core.editor "notepad"
+--amend - will update the last commit, that is new file, modification of the file, or message.
+
+git reset HEAD bar.txt - to unstage the bar.txt file
+git reset HEAD --hard - to revert all the changes and make all the file till their last commit
+git reset HEAD^ --hard - to get all the files back from the commit, in other words, cancelling the last commit
+
+git branch branchName - to create a new branch
+git checkout branchName - to switch to the perticular branch.
+git branch - to check the present branches and the current branch is pointed throught * sign.
+git branch -d branchName - to delete the branch.
+git checkout -b branchName - to create and switch to the newly created branch.
+git merge branchName - merges the branch in the currect checkedout branch. if conflict occurs, open the conflicted file, make the changes to keep the correct version, and save the file. stage and commit the files to complete the merge.
+git rebase parentBranch - to make the current branch to have all the changes that parent branch has.
+git rebase -i parentBranchName - to change the commit messages, combine the commits.
+
+git rebase -i HEAD~3 - to make all the available operations on last 3 commits.
+
+git tag tagName - till the last commit, the branch will have the special pointer that is tag. We can use the tagname to checkout the branch till that commit 
+git push 
+git remote -v - to get the remote repositories associated with the current local repository.
+
+
+
