@@ -10,6 +10,7 @@ git log --until "yyyy-mm-dd"
 git log -NumberOfLogs - to show number of logs, can be used with any other option given above
 
 git commit -m "Commit Message" - to commit the changes
+git commit -am "commit message" - to add and commit changes in one step.
 git mv currentFileOrDirectoryName newFileOrDirName - to rename a file or directory
 git rm currentFileOrDirectoryName - to remove a file or a directory
 
@@ -20,6 +21,7 @@ git diff commitId^ - added ^ symbol, to see the changes including that commit
 git diff HEAD^ - to see the changes in the current and previous commit changes.
 
 git commit --amend - to change the last commit message, new file, updated existing file, it will open vi editor, to change the editor use below command
+git commit --amend -m "Updated commit message" - to udpate the message
 git config --global core.editor "notepad"
 --amend - will update the last commit, that is new file, modification of the file, or message.
 
@@ -66,4 +68,24 @@ Stashing ---
 git stash save "Stash Msg" - to save the changes done on a branch before switching to another branch.
 
 git stash list - to see the list of all stashes
-git stash apply stash@{stashId} - to apply the stashed changes.
+git stash apply stash@{stashId} - to apply the stashed changes. But it won't delete the stashed changes from the list. To apply and delete the stash, 
+git stash pop - it will apply the top stash and delete it from the list of stashes.
+
+git stash drop stash@{stashId} - to delete the stashed changes.
+git stash clear - to delete all the stashes.
+Stash Tips
+Stashes are not transferred to the server when you push
+By default, git will not stash changes made to untracked or ignored files
+Adding the -u option (or --include-untracked) tells git stash to stash your untracked files
+
+Why Git Log ?
+As a developer, you have all the history of your commits. How would you view them in a systematic way?
+You may want to alter the output and customize it. Let us see how.
+Best Practices
+If it seems difficult to summarize what your commit does, it may be because it includes several logical changes or bug fixes. It is best to split up into several commits using git add -p command
+Don't end the summary line with a period – it is a title and titles don't end with a period
+
+Tips on Commit Amend
+git commit --amend command is a convenient way to fix up the most recent commit
+It lets you combine staged changes with the previous commit instead of committing it as a new snapshot
+It can also be used to simply edit the previous commit message, without changing its snapshot
