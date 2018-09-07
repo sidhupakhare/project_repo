@@ -64,3 +64,6 @@ git fetch --all --prune - to get the deleted file info.
 
 Stashing ---
 git stash save "Stash Msg" - to save the changes done on a branch before switching to another branch.
+
+git stash list - to see the list of all stashes
+git stash apply stash@{stashId} - to apply the stashed changes.
