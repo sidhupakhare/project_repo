@@ -1,0 +1,225 @@
+Intro
+Allows you to develop scalable network applications using javascript on the server side.
+It runs on Google V8 Engine
+Node.js shines in real-time web applications employing push technology over web sockets. It can be used for the following purposes:
+
+Web applications (especially real-time web apps)
+Network applications
+Distributed systems
+General purpose applications
+
+Following types of apps can be developed using Nodejs
+1. Websocket Server
+2. File Upload Server
+3. Ad Server
+4. Any real time data Apps
+
+Advantage of using node.js
+Provides an easy way to build scalable network programs
+Easy to install and run locally
+Generally fast
+Great concurrency
+Asynchronous everything
+Almost never blocks
+Unified programming language and data type
+
+REPL
+REPL stands for Read Eval Print Loop and it represents a computer environment like a Windows console or Unix/Linux shell where a command is entered and the system responds with an output in an interactive mode.
+
+Read - Reads user's input, parses the input into JavaScript data-structure, and stores in memory.
+Eval - Takes and evaluates the data structure.
+Print - Prints the result.
+Loop - Loops the above command until the user presses ctrl-c twice
+
+REPL Commands
+Ctrl + c - terminate the current command.
+Ctrl + c twice - terminate the Node REPL.
+Ctrl + d - terminate the Node REPL.
+Up/Down Keys - see command history and modify previous commands.
+Tab Keys - list of current commands.
+.help - list of all commands.
+.break - exit from multiline expression.
+.clear - exit from multiline expression.
+.save filename - save the current Node REPL session to a file.
+.load filename - load file content in current Node REPL session.
+
+Its Not:
+1. A Web Framework
+2. Not for beginners
+3. Not a multithreaded application rather than it is a single threaded server
+
+Blocking Vs Non-Blocking Code
+
+Blocking
+Line 1 - Read File
+Line 2 - Assign the file contents to a variable "fileContents" and print it.
+LIne 3 - Do Something else
+
+Line 2 is blocked because of line 1. That means, until and unless, line one is completed, we can not move to line 2.
+
+Non Blocking
+Line 1 - Read File contents
+Line 2 - 	Whenever gets completed assign to varaible "fileContents" and print it.
+Line 3 - Do Something else.
+
+Line 2 is a callback here. Whenever file contents reading is finished, assign to variable and print it.
+
+Actual Nodejs Code.
+Blocking Code.
+var fileContents = fs.readFileSync('/etc/hosts');
+console.log(fileContents);
+console.log('Do something else');
+
+Non-Blocking Code
+fs.readFile('/etc/hosts', function(err, fileContents){
+	console.log(fileContents);
+});
+console.log('Do something else');
+
+OR
+var callback = function(err, fileContents) {
+	console.log(fileContents);
+}
+fs.readFile('/etc/hosts', callback);
+console.log('Do Something else');
+
+Example 1 -
+var http = require('http'); //import module http
+
+http.createServer(function(request, response){
+	response.writeHead(200);//status code in header
+	response.write("Hello Nodejs");
+	response.end();
+}).listen(8080);
+console.log("Listening. . .");
+
+To Run - node Example1
+
+Example 2 -
+var http = require('http'); //import module http
+http.createServer(function(request, response){
+	response.writeHead(200);
+	response.write('Server Running');
+	setTimeout(function(){
+		response.write("Server done with running.");
+		response.end();
+	}, 5000);
+}).listen(8080);
+console.log("Listening. . .");
+
+To Run - node Example1
+
+Functions in Nodejs
+var printVal = function(inputValue) {
+	console.log(inputValue);
+}
+
+function mainFunction(anotherFunction, value) {
+	anotherFunction(value);
+}
+mainFunction(printVal, "Hello Anonymous Function");
+mainFunction(function(inputValue){console.log(inputValue)}, "Hello Anonymous Function");
+
+NPM
+Node Package Manager (NPM) provides two main functionalities:
+
+Online repositories for node.js packages/modules which are searchable on search.nodejs.org
+Command line utility to install Node.js packages, do version management and dependency management of Node.js packages.
+NPM comes bundled with Node.js installables after v0.6.3 version. There is a simple syntax to install any Node.js module:
+
+$ npm install <Module Name>
+We can use npm ls command to list down all the locally installed modules.
+
+Node.js as single thread
+For async processing, Node.js was done as an experiment. It is believed that better performance and scalability can be achieved by async processing on a single thread under typical web load than the typical thread based implementation.
+
+Node.js over Java
+Node.js is quickly gaining attention as it is a loop-based server for JavaScript. Node.js gives user the ability to write the JavaScript on the server, which has access to things like HTTP stack, file I/O, TCP and databases.
+
+Global Objects and timers
+1. __filename - To get the file name that is currently being executed.
+2. __dirname - To get the directory name that contains the file that is being executed.
+
+Global Functions
+1. setTimeout(function, longMillis) - executes the function after the given milli seconds.
+Example -
+setTimeout(function(){console.log("Hello")}, 5000);
+
+Output - Hello // Hello gets printed after 5 seconds.
+
+2. setInterval(function, lognMillis) - Executes the function repeatedly after fixed amount of time in milli seconds.
+setInterval(function(){console.log("Hello")}, 2000);
+
+Output -
+Hello
+Hello
+Hello
+Hello
+.
+.
+.
+^C
+//Hello gets printed until and unless we press Control + C
+
+Callback Functions:
+Callback function is used in Node.js to deal with multiple requests made to the server. If a server takes a long time to read a large file and if you don’t want a server to get engaged in reading that large file while dealing with other requests, the call back function is used. The Call back function allows the server to deal with the pending requests first and call a function when it is completed.
+
+
+Example
+setTimeout(callback, 5000);
+
+function callback(){
+	console.log("This is from callback function");
+}
+
+Modules:
+Module is a seperate file created to make the code more modularize.
+User Define Modules
+
+Built-in Modules
+File System(fs)
+
+fs.open()
+fs.close()
+fs.delete()
+fs.truncate()
+fs.readFile()
+fs.writeFile()
+
+Event Listeners
+Event listeners are similar to call back functions, but are associated with some event. For example, when a server listens to http request on a given port, an event will be generated and to specify http server has received and will invoke corresponding event listener. Basically, Event listeners are also call backs for a corresponding event.
+
+
+Types of streams
+There are four types of streams:
+
+Readable - For read operation
+Writable - For write operation
+Duplex - For both read and write operation
+Transform - When the output is computed based on the input
+
+Piping in Node
+Piping is a mechanism to connect output of one stream to another stream. It is normally used to get data from one stream and to pass the output of that stream to another stream. There is no limit on piping operations.
+
+
+Chaining in Node
+Chaining is a mechanism to connect output of one stream to another stream and create a chain of multiple stream operations. It is normally used with piping operations.
+
+
+node-router
+node-router is a lightweight, flexible and lightning-fast router for Node.js web servers.
+
+It provides key conveniences for developing a Node server with the option to add middleware for additional functionality when you need it. Built-in features are limited by design and the configuration is simple and flexible. Much of the baseline code was derived from Connect.
+
+In its current form, node-router is ideal for routing and responding to requests with dynamic text or JSON.
+
+
+Node.js Course Summary
+Pros:
+
+If your application does not have any CPU intensive computation, you can build it in JavaScript top to bottom, even down to the database level if you use JSON storage object DB like MongoDB.
+Crawlers receive a full-rendered HTML response, which is far more SEO friendly rather than a single page application or a websockets app run on top of Node.js.
+Cons:
+
+Any intensive CPU computation will block node.js responsiveness, so a threaded platform is a better approach.
+Using relational database with Node.js is considered less favorable.
